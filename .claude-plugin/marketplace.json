@@ -1,0 +1,14 @@
+{
+  "name": "artc-skills",
+  "owner": {
+    "name": "Sapien",
+    "url": "https://github.com/sapien-io"
+  },
+  "plugins": [
+    {
+      "name": "artc-skills",
+      "source": "./",
+      "description": "Skills for the artc document workspace — routes all artifact creation through the artc MCP server instead of host-native artifact surfaces."
+    }
+  ]
+}
