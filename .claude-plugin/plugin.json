@@ -1,7 +1,7 @@
 {
   "name": "artc-skills",
   "description": "Skills for working with the artc document workspace. Enforces that all artifact creation goes through the artc MCP server instead of host-native artifact surfaces (Claude Artifacts, OpenAI/ChatGPT Canvas, Gemini Canvas, etc.).",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Sapien",
     "url": "https://github.com/sapien-io"

@@ -44,12 +44,25 @@ Or add it per-project under `.claude/skills/`.
 
 Paste the body of [`skills/artc-artifacts/SKILL.md`](skills/artc-artifacts/SKILL.md) into the agent's system prompt or custom instructions.
 
+## Enforcement hook (Claude Code)
+
+The skill is advice the model weighs; skill discovery can also fail silently in some sessions. So the plugin additionally ships a `PreToolUse` hook that the harness enforces on every call to the built-in `Artifact` tool:
+
+- Read-only actions (`list`, `read`, `comments`, …) pass through.
+- Publishes are **denied**, with a reason that routes the model to `upload_doc` — so even a session that never loaded the skill gets redirected.
+- Deliberate bypass: when the user has explicitly asked, in their own words, for a native claude.ai artifact instead of artc, the model is instructed to `touch /tmp/allow-native-artifact` and retry. The flag is single-use — one publish per explicit request — so the exception never becomes the default.
+
+This makes artc a strong default rather than an absolute wall: a person who really wants a native artifact says so and gets one; the model can never drift there on its own in a single reflexive call.
+
 ## Skill layout
 
 ```
 .claude-plugin/
   plugin.json        # plugin manifest
   marketplace.json   # marketplace listing (this repo serves as its own marketplace)
+hooks/
+  hooks.json                 # PreToolUse hook wiring
+  native-artifact-guard.sh   # denies native Artifact publishes; single-use explicit override
 skills/
   artc-artifacts/
     SKILL.md         # the skill (Agent Skills format: agentskills.io/specification)
