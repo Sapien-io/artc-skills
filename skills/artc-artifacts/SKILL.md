@@ -7,7 +7,7 @@ description: Use when creating, publishing, updating, or sharing any artifact or
 
 ## Overview
 
-**Every artifact goes through artc. No exceptions.**
+**Every artifact goes through artc.** One exception: the user explicitly asks, in their own words, for a host-native artifact instead of artc ("use the claude artifact system", "not artc"). Honor that — for that one deliverable only; the next artifact defaults to artc again. A plain "make an artifact" is not the exception: it means artc.
 
 artc is this team's document workspace (an MCP server). All deliverables — reports, web pages, design docs, memos, specs, write-ups, anything a person will read, review, or share — are created and updated with artc's tools, never with the host platform's built-in artifact system.
 
@@ -56,6 +56,10 @@ Feedback lives in artc too: `list_comments` / `get_comment` to read, `comment` /
 | Read/respond to feedback | `list_comments`, `get_comment`, `reply` | Host comment features |
 | Retire a finished doc | `archive_doc` | Deleting or abandoning |
 | Rename a doc | `rename_doc`, then upload under the new title | New title in `upload_doc` (creates a duplicate) |
+
+## Enforcement
+
+In Claude Code this plugin also ships a `PreToolUse` hook that denies `Artifact` publishes (read-only actions like `list`/`read`/`comments` pass). The deny reason explains the one bypass: when — and only when — the user explicitly asked for a native artifact in their own words, run `touch /tmp/allow-native-artifact` and retry; the flag is single-use, covering one publish. Never arm the flag on your own judgment, to "save time", or because artc errored — and if you are unsure whether the request was explicit, ask the user.
 
 ## Rationalizations — All Invalid
 
