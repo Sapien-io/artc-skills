@@ -8,7 +8,7 @@
     {
       "name": "artc-skills",
       "source": "./",
-      "description": "Skills for the artc document workspace — routes all artifact creation through the artc MCP server instead of host-native artifact surfaces."
+      "description": "Skills for the artc document workspace. Preview document changes locally or in native artifact surfaces before publishing approved content through the artc MCP server."
     }
   ]
 }

@@ -6,11 +6,11 @@ The repo currently ships one skill:
 
 | Skill | What it does |
 |---|---|
-| [`artc-artifacts`](skills/artc-artifacts/SKILL.md) | Makes the agent publish **every** artifact/document deliverable through the artc MCP server (`upload_doc` + `get_design_system`), and **never** through host-native artifact surfaces — Claude Artifacts, OpenAI/ChatGPT Canvas, Gemini Canvas, or equivalents. |
+| [`artc-artifacts`](skills/artc-artifacts/SKILL.md) | Shows document drafts and edits in a local or native artifact preview before publishing approved content through the artc MCP server. Explicit requests to publish can proceed directly. |
 
 ## Prerequisite
 
-The agent must have the **artc MCP server** connected (tools like `upload_doc`, `get_design_system`, `list_comments`). The skill routes artifact creation to those tools; it does not provide the server itself.
+The agent must have the **artc MCP server** connected (tools like `upload_doc`, `get_design_system`, `list_comments`). The skill uses those tools to publish approved documents; it does not provide the server itself.
 
 ## Install
 
